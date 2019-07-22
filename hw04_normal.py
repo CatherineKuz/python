@@ -35,7 +35,6 @@ print("Символы в нижнем регистре: \n", line_str)
 # # нужно получить список строк: ['AY', 'NOGI', 'P']
 # # Решить задачу двумя способами: с помощью re и без.
 
-#Я укоротила исходную абракадабру. С ней у меня выводилась ошибка: SyntaxError: unexpected character after line continuation character.
 
 line_2 = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysm'\
        'NOGIPHpEMujalpPLNzRWXfwHQqwksrFeipEUlTLeclMwAoktKlfUBJHPsnawvjPhfgewV'\
