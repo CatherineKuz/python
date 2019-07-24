@@ -10,6 +10,7 @@ print(new)
 
 
 
+
 # Задание-2:
 # Даны два списка фруктов.
 # Получить список фруктов, присутствующих в обоих исходных списках.
@@ -21,6 +22,9 @@ print(fruit_new)
 
 fruit_new = list(set(fruit1)&set(fruit2))
 print(fruit_new)
+
+
+
 
 
 
