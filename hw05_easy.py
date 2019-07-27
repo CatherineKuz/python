@@ -5,53 +5,60 @@
 import os
 import shutil
 
-path_dir = [('dir_' + str(i + 1)) for i in range(9)]
-
-def make_dir(paths):
-    dir_path = os.path.join(os.getcwd(), paths)
+def make_dir(path):
     try:
-        os.mkdir(dir_path)
+        os.mkdir(os.path.join(os.getcwd(), path))
     except FileExistsError:
-        print(dir_path + ' - такая директория уже есть')
-
-def del_dir(paths):
-    try:
-        os.rmdir(paths)
-    except:
-        print("Удалить директорию %s не удалось" % paths)
+        print(f'Директория {path} уже существует')
     else:
-        print("Успешно удалена директория %s" % paths)
+        print(f'Директория {path} успешно создана')
 
-for i in path_dir:
-    make_dir(i)
-    del_dir(i)
+def del_dir(path):
+    try:
+        os.rmdir(os.path.join(os.getcwd(), path))
+    except OSError:
+        print(f"Удалить директорию {path} не удалось")
+    else:
+        print(f"Успешно удалена директория {path}")
 
 
 
 # Задача-2:
 # Напишите скрипт, отображающий папки текущей директории.
-def list_dir ():
-    folders = os.listdir()
-    print('Список папок:')
-    for index, element in enumerate(folders, start=1):
-        if os.path.isdir(element):
-            print('{}. {}'.format(index, element))
-
-if __name__ == '__main__':
-    list_dir()
+def list_dir():
+    folders = os.listdir(os.getcwd())
+    print(folders)
 
 
 # Задача-3:
 # Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.
 
-def current_file_copy ():
-    name_file = os.path.relpath(__file__)
-    new_file = name_file +'.copy'
-    if os.path.isfile(new_file) != True:
-        shutil.copy(name_file, new_file)
-        return new_file + ' - создан'
+def copy_file(file_name):
+    new_file = file_name + '.copy'
+    try:
+        shutil.copy(file_name, new_file)
+    except OSError:
+        print(f'Нельзя скопировать файл {file_name}.')
     else:
-        return 'Копия файла уже существует'
+        print(f'Файл {file_name} успешно скопирован.')
 
 if __name__ == '__main__':
-    print(current_file_copy())
+    while True:
+        print("1 - Создать папки dir1-dir9")
+        print("2 - Удалить папки dir1-dir9")
+        print("3 - Вывести список папок в данной директории")
+        print("4 - Скопировать текущий файл")
+        print("5 - выйти из программы")
+        command = input("Введите номер команды: ")
+        if command == '1':
+            for i in range(1, 10):
+                make_dir(f"dir{i}")
+        elif command == '2':
+            for i in range(1, 10):
+                del_dir(f"dir{i}")
+        elif command == '3':
+            list_dir()
+        elif command == '4':
+            copy_file(__file__)
+        elif command == '5':
+            break
